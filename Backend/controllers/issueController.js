@@ -43,11 +43,18 @@ const fetchIssueByID = async (req,res) => {
 }
 
 const deleteIssueByID = async (req,res) => {
+  const { id } = req.params;
   try{
+    const issue = await Issue.findByIdAndDelete(id);
 
+    if(!issue || issue.length == 0){
+    res.status(404).json({ error: 'Issue not found!' });
+    }
+
+    res.json({ message: "Issue deleted successfully!" });
   }
   catch(err){
-    console.error("Error creating issue: ", err);
+    console.error("Error deleting issue: ", err);
     res.status(500).json({ message: "Server Error" });
   }
 }
@@ -77,10 +84,16 @@ const updateIssueByID = async (req,res) => {
 
 const fetchAllIssues = async (req,res) => {
   try{
+    const issues = await Issue.find({});
 
+    if(!issues || issues.length == 0){
+      res.status(404).json({ error: 'Issues not found!' });
+    }
+
+    res.json(issues);
   }
   catch(err){
-    console.error("Error creating issue: ", err);
+    console.error("Error fetching issues: ", err);
     res.status(500).json({ message: "Server Error" });
   }
 }
