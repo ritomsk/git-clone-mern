@@ -1,0 +1,95 @@
+.navbar{
+  background-color: #010409;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  padding: 0 14px;
+  border-bottom: 1px solid rgb(83, 83, 83);
+}
+
+.navbar-left{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.toggle-sidebar{
+  padding: 5px 5px;
+  border-radius: 8px;
+  border: 1px solid grey;
+}
+
+.toggle-sidebar:hover{
+  cursor: pointer;
+  background-color: rgb(39, 39, 39);
+}
+
+.logo-container{
+  margin-left: 14px;
+}
+
+.github-logo{
+  height: 30px;
+}
+
+.navbar p{
+  margin-left: 10px;
+  padding: 7px;
+  border-radius: 8px;
+}
+
+.navbar p:hover{
+  cursor: pointer;
+  background-color: rgb(29, 29, 29);
+}
+
+.navbar-right{
+  display: flex;
+  flex-direction: row;
+  column-gap: 0.75rem;
+  align-items: center;
+  margin-left: auto;
+  height: 67px;
+}
+
+.nav-icon{
+  font-size: 1rem;
+  color: #aaaaaa;
+}
+
+.icon-container{
+  padding: 5px;
+  border: 2px solid rgb(73, 73, 73);
+  border-radius: 7px;
+}
+
+.icon-container:hover{
+  cursor: pointer;
+  background-color: rgb(29, 29, 29);
+}
+
+.search-bar-container{
+  /* padding: 5px; */
+  padding-left: 15px;
+  border: 2px solid rgb(73, 73, 73);
+  border-radius: 7px;
+}
+
+.search-input{
+  font-size: 1rem;
+  border: none;
+  background-color: #010409;
+  padding: 6px;
+  margin: 0 0.5rem;
+  width: 15rem;
+  color: #c9d1d9;
+  outline: none;
+  box-shadow: inset 0 1px 0 rgba(27,31,35,0.075);
+  height: 32px;
+  transition: border-color 0.2s;
+}
+
+.search-input:hover{
+  cursor: pointer;
+}

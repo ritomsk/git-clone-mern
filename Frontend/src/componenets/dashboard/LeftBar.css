@@ -1,0 +1,19 @@
+.leftbar-wrapper{
+  padding: 0 2rem;
+  background-color: #010409;
+  width: 20rem;
+}
+
+.leftbar-update{
+  margin-top: 2rem;
+  background-color: #0d1017;
+  padding: 8px 14px;
+  border: 2px solid rgb(29, 29, 29);
+  border-radius: 14px;
+  margin-bottom: 1rem;
+}
+
+.view-trending-leftbar{
+  text-decoration: none;
+  color: rgb(106, 0, 255);
+}

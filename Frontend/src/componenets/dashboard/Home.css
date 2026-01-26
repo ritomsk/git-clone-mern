@@ -1,0 +1,20 @@
+.home-wrapper{
+  padding: 0 1.5rem;
+  background-color: #010409;
+  overflow-y: scroll;
+  scrollbar-width: none;
+  width: 50rem;
+}
+
+.repo-container{
+  background-color: #0d1017;
+  padding: 8px 14px;
+  border: 2px solid rgb(29, 29, 29);
+  border-radius: 14px;
+  margin-bottom: 1rem;
+}
+
+.view-repo-home{
+  text-decoration: none;
+  color: blue;
+}

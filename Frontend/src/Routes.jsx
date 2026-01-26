@@ -2,10 +2,10 @@ import { useNavigate, useRoutes } from "react-router-dom";
 import { useAuth } from './AuthContext.jsx';
 import { useEffect } from "react";
 
-import { Dashboard } from './componenets/dashboard.jsx';
-import { Login } from './componenets/Login.jsx';
-import { Signup } from './componenets/Signup.jsx';
-import { Profile } from './componenets/Profile.jsx';
+import  Dashboard  from './componenets/dashboard/dashboard.jsx';
+import  Login  from './componenets/auth/Login.jsx';
+import  Signup  from './componenets/auth/Signup.jsx';
+import  Profile  from './componenets/user/Profile.jsx';
 
 export default function ProjectRoutes(){
   const { currUser, setCurrUser } = useAuth();

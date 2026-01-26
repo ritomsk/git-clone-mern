@@ -31,7 +31,7 @@ const signup = async (req,res) => {
     const result = await newUser.save();
 
     const token = jwt.sign({ id: result._id}, process.env.TOKEN_KEY, { expiresIn: 7* 86400 });
-    res.json({ token });
+    res.json({ token, userId: result._id });
   }
   catch(err){
     console.error("Error signing up: ", err);

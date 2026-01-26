@@ -1,0 +1,61 @@
+.sidebar-container{
+  margin-left: 1.2rem;
+  padding-right: 1rem;
+  border-right: 1px solid rgb(83, 83, 83);
+  width: 18rem;
+  overflow-y: scroll;
+  scrollbar-width: none;
+}
+
+.sidebar-info{
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.btn-repo-create{
+  padding: 6px;
+  background-color: green;
+  color: white;
+  border: none;
+  border-radius: 6px;
+}
+
+.btn-repo-create:hover{
+  cursor: pointer;
+}
+
+.fa-file{
+  font-size: 1rem;
+  color: white;
+}
+
+.search-input-sidebar{
+  background-color: #141b23;
+  color: #8c939a;
+  width: 100%;
+  height: 2rem;
+  padding: 0 12px;
+  margin: 0;
+  border-radius: 6px;
+  border: 1px solid rgb(46, 46, 46);
+  outline: none;
+}
+
+.sidebar-repo{
+  margin-top: 1.5rem;
+}
+
+.repo-view{
+  margin-top: 0.4rem;
+}
+
+.repo-view i{
+  margin-right: 0.3rem;
+}
+
+.repo-view:hover{
+  cursor: pointer;
+  text-decoration-line: underline;
+}
