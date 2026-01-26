@@ -1,39 +1,55 @@
 import { Link } from 'react-router-dom';
 import './Home.css';
+import { useEffect, useState } from 'react';
+import api from '../../utils/axiosInstance.js';
 
-export default function Home(){
+export default function Home({searchQuery}){
+  const [repositories,  setRepositories] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+
+  useEffect(() => {
+    const userId = localStorage.getItem("userId");
+
+    const fetchRepos = async () => {
+      try{
+        const result = await api.get(`/repo/user/${userId}`);
+        setRepositories(result.data);
+      }
+      catch(err){
+        console.error("Error fetching repositories: ", err);
+        alert("Error fetching repositories");
+      }
+    }
+
+    fetchRepos();
+  }, []);
+
+  useEffect(() => {
+    if(searchQuery === ''){
+      setSearchResults(repositories);
+    }
+    else{
+      const fileterdRepo = repositories.filter((repo) => 
+      repo.title.toLowerCase().includes(searchQuery.toLowerCase()));
+      setSearchResults(fileterdRepo);
+    }
+  },[searchQuery,repositories]);
+
   return (
     <div className="home-wrapper">
       <h2>Home</h2>
       <div className="repos-wrapper">
-        <div className="repo-container">
-          <div className="repo-info">
-            <h3>My-project</h3>
-            <p>my first project</p>
+        {
+          searchResults.map((repo) => (
+          <div className="repo-container" key={repo._id}>
+            <div className="repo-info">
+              <h3>{repo.title}</h3>
+              <p>{repo.description}</p>
+            </div>
+            <Link to={`/repo/${repo._id}`} className="view-repo-home">VIEW REPOSITORY</Link>
           </div>
-          <Link to='/repo' className="view-repo-home">VIEW REPOSITORY</Link>
-        </div>
-        <div className="repo-container">
-          <div className="repo-info">
-            <h3>Git-mern-clone</h3>
-            <p>Working clone of Github with MERN stack and CLI implementation.</p>
-          </div>
-          <Link to='/repo' className="view-repo-home">VIEW REPOSITORY</Link>
-        </div>
-        <div className="repo-container">
-          <div className="repo-info">
-            <h3>ChatGPT Clone</h3>
-            <p>Working AI Chatbot with voice feature implementation.</p>
-          </div>
-          <Link to='/repo' className="view-repo-home">VIEW REPOSITORY</Link>
-        </div>
-        <div className="repo-container">
-          <div className="repo-info">
-            <h3>AirBNB Clone</h3>
-            <p>Fully functional Home booking web application.</p>
-          </div>
-          <Link to='/repo' className="view-repo-home">VIEW REPOSITORY</Link>
-        </div>
+          ))
+        }
       </div>
     </div>
   )

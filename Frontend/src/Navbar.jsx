@@ -1,6 +1,10 @@
+import { useEffect } from 'react';
 import './Navbar.css';
 
-export default function Navbar(){
+export default function Navbar({searchQuery, setSearchQuery}){
+  const handleSearch = (e) => {
+    setSearchQuery(e.target.value);
+  }
 
   return (
     <div className="navbar">
@@ -24,6 +28,8 @@ export default function Navbar(){
           name="search"
           placeholder="Search repository"
           className="search-input"
+          value={searchQuery}
+          onChange={handleSearch}
           />
         </div>
         <div className="icon-container">

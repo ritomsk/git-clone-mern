@@ -35,8 +35,12 @@ const createRepository = async (req,res) => {
 
 const getAllRepository = async (req,res) => {
   try{
-    const repos = await Repository.find({}).populate("owner").populate("issues");
-    if(!repos || repo.length == 0){
+    const repos = await Repository.find({visibility: "true"})
+      .populate("owner")
+      .populate("issues")
+      .sort({_id: -1})
+      .limit(10);
+    if(!repos || repos.length == 0){
       res.status(401).json({ error: 'No repository found!'});
     }
 

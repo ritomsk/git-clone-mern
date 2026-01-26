@@ -1,6 +1,39 @@
+import { useEffect,useState } from 'react';
+import api from '../../utils/axiosInstance.js';
 import './Sidebar.css';
 
 export default function Sidebar(){
+  const [suggestedRepos, setSuggestedRepos] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
+  const [searchQuery, setSearchQuery] = useState("");
+
+  
+  useEffect(() => {
+    const fetchSuggestedRepos = async () => {
+      try{
+        const result = await api.get(`/repo/all`);
+        setSuggestedRepos(result.data);
+      }
+      catch(err){
+        console.error("Error fetching repositories: ", err);
+        alert("Error fetching repositories");
+      }
+    }
+
+    fetchSuggestedRepos();
+  }, []);
+
+  useEffect(() => {
+    if(searchQuery === ''){
+      setSearchResults(suggestedRepos);
+    }
+    else{
+      const fileterdRepo = suggestedRepos.filter((repo) => 
+      repo.title.toLowerCase().includes(searchQuery.toLowerCase()));
+      setSearchResults(fileterdRepo);
+    }
+  },[searchQuery,suggestedRepos]);
+
   return(
     <div className="sidebar-container">
       <div className="sidebar-info">
@@ -14,20 +47,18 @@ export default function Sidebar(){
       name="search"
       placeholder="Find a repository"
       className="search-input-sidebar"
+      value={searchQuery}
+      onChange={(e) => setSearchQuery(e.target.value)}
       />
       <div className="sidebar-repo">
-        <div className="repo-view">
-          <i className="fa-regular fa-circle-user"></i>
-          alan/my-project
-        </div>
-        <div className="repo-view">
-          <i className="fa-regular fa-circle-user"></i>
-          joe/git-mern-clone
-        </div>
-        <div className="repo-view">
-          <i className="fa-regular fa-circle-user"></i>
-          dorris/react.js
-        </div>
+        {
+          searchResults.map((repo) => (
+            <div className="repo-view" key={repo._id}>
+              <i className="fa-regular fa-circle-user"></i>
+              {repo.owner.username}/{repo.title}
+            </div>
+          ))
+        }
       </div>
     </div>
   )
