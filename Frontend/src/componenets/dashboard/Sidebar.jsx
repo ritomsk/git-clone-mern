@@ -1,11 +1,13 @@
 import { useEffect,useState } from 'react';
 import api from '../../utils/axiosInstance.js';
 import './Sidebar.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Sidebar(){
   const [suggestedRepos, setSuggestedRepos] = useState([]);
   const [searchResults, setSearchResults] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate();
 
   
   useEffect(() => {
@@ -38,7 +40,7 @@ export default function Sidebar(){
     <div className="sidebar-container">
       <div className="sidebar-info">
         <p>Suggested repositories</p>
-        <button className="btn-repo-create">
+        <button className="btn-repo-create" onClick={(e) => navigate('/repo/create')}>
           <i className="fa-regular fa-file"></i>
           New
         </button>

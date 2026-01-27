@@ -1,7 +1,10 @@
 import { useEffect } from 'react';
 import './Navbar.css';
+import { useNavigate } from 'react-router-dom';
 
 export default function Navbar({searchQuery, setSearchQuery}){
+  const navigate = useNavigate();
+
   const handleSearch = (e) => {
     setSearchQuery(e.target.value);
   }
@@ -19,7 +22,7 @@ export default function Navbar({searchQuery, setSearchQuery}){
               className="github-logo"
             />
         </div>
-        <p>Dashboard</p>
+        <p onClick={() => navigate('/')}>Dashboard</p>
       </div>
       <div className="navbar-right">
         <div className="search-bar-container">
@@ -32,16 +35,16 @@ export default function Navbar({searchQuery, setSearchQuery}){
           onChange={handleSearch}
           />
         </div>
-        <div className="icon-container">
+        <div className="icon-container" data-tooltip="Create repository" onClick={() => navigate('/repo/create')}>
           <i className="fa-solid fa-plus nav-icon"></i>
         </div>
-        <div className="icon-container">
+        <div className="icon-container" data-tooltip="Repositories">
           <i className="fa-solid fa-file nav-icon"></i>
         </div>
-        <div className="icon-container">
+        <div className="icon-container" data-tooltip="Issues">
           <i className="fa-regular fa-circle-dot nav-icon"></i>
         </div>
-        <div className="icon-container">
+        <div className="icon-container" data-tooltip="Profile">
           <i className="fa-regular fa-circle-user nav-icon"></i>
         </div>
       </div>
