@@ -15,6 +15,8 @@ import { commitRepo } from './controllers/commit.js';
 import { pushRepo } from './controllers/push.js';
 import { pullRepo } from './controllers/pull.js';
 import { revertRepo } from './controllers/revert.js';
+import { addRemote } from './controllers/addRemote.js';
+import { login } from './controllers/login.js';
 
 yargs(hideBin(process.argv))
   .command("start", "start the server", startServer)
@@ -66,6 +68,37 @@ yargs(hideBin(process.argv))
     },
     (argv) => {
       revertRepo(argv.commitId);
+    }
+  )
+  .command(
+    'remote add origin <repoName>',
+    'Connect to the given repository',
+    (yargs) => {
+      yargs.positional('repoName', {
+        describe: "repo name to connect to.",
+        type: "string"
+      });
+    },
+    (argv) => {
+        addRemote(argv.repoName);
+    }
+  )
+  .command(
+    'login <email> <password>',
+    'provide user details for logging in',
+    (yargs) => {
+      yargs
+      .positional('email', {
+        describe: "user email address",
+        type: "string"
+      })
+      .positional('password', {
+        describe: "user password",
+        type: "string"
+      });
+    },
+    (argv) => {
+      login(argv.email, argv.password);
     }
   )
   .demandCommand(1, "You need at least one command")

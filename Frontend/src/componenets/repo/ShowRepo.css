@@ -1,0 +1,146 @@
+
+.show-repo-wrapper {
+  display: flex;
+  gap: 24px;
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 24px;
+  color: #c9d1d9;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+}
+
+.show-page-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.navbar-show {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 16px 24px 0;
+  border-bottom: 1px solid #30363d;
+  background-color: #0d1117;
+  margin-bottom: 24px;
+}
+
+.navbar-show-elements {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 16px;
+  cursor: pointer;
+  color: #c9d1d9;
+  font-size: 14px;
+  border-bottom: 2px solid transparent;
+  transition: border-bottom-color 0.2s ease;
+}
+
+.navbar-show-elements:hover {
+  background-color: #161b22;
+  border-radius: 6px 6px 0 0;
+}
+
+.navbar-show-elements.active {
+  border-bottom-color: #f78166;
+  font-weight: 600;
+}
+
+.show-repo-left {
+  flex: 3;
+}
+
+.show-repo-name-container {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 16px;
+  font-size: 20px;
+}
+
+.show-repo-name-container span {
+  font-weight: 600;
+  color: #58a6ff;
+}
+
+.show-repo-name-container sup {
+  font-size: 12px;
+  border: 1px solid #30363d;
+  padding: 2px 8px;
+  border-radius: 24px;
+  color: #8b949e;
+  font-weight: 500;
+  top: -0.5em;
+}
+
+.show-repo-folder-container {
+  border: 1px solid #30363d;
+  border-radius: 6px;
+  background-color: #0d1117;
+  overflow: hidden;
+}
+
+.show-repo-owner-info {
+  background-color: #161b22;
+  padding: 12px 16px;
+  border-bottom: 1px solid #30363d;
+  color: #8b949e;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  min-height: 40px;
+}
+
+.show-repo-folder-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.show-folder {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 16px;
+  border-bottom: 1px solid #21262d;
+  cursor: pointer;
+  transition: background-color 0.1s;
+}
+
+.show-folder:last-child {
+  border-bottom: none;
+}
+
+.show-folder:hover {
+  background-color: #161b22;
+}
+
+.show-folder i {
+  color: #8b949e;
+}
+
+.show-folder span {
+  font-size: 14px;
+  color: #c9d1d9;
+}
+
+.show-repo-right {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.show-repo-right h4 {
+  font-size: 16px;
+  margin-bottom: 12px;
+  color: #c9d1d9;
+  font-weight: 600;
+}
+
+.show-repo-right p {
+  font-size: 14px;
+  color: #8b949e;
+  line-height: 1.5;
+}

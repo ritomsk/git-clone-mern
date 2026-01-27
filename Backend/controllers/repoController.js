@@ -60,6 +60,7 @@ const fetchRepositoryByID = async (req,res) => {
       res.status(404).json({ error: 'Repository not found!'});
     }
 
+    console.log(repo)
     res.json(repo);
   }
   catch(err){
