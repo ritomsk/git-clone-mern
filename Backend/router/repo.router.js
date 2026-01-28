@@ -43,5 +43,11 @@ repoRouter.patch(
   verifyRepoOwner,
   repoController.toggleVisibilityByID
 );
+repoRouter.post(
+  "/repo/push",
+  authMiddleware,
+  repoController.updateRepoAfterPush
+)
+
 
 export default repoRouter;

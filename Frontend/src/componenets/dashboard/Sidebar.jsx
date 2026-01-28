@@ -55,7 +55,7 @@ export default function Sidebar(){
       <div className="sidebar-repo">
         {
           searchResults.map((repo) => (
-            <div className="repo-view" key={repo._id}>
+            <div className="repo-view" key={repo._id} onClick={() => navigate(`/repo/${repo._id}`)}>
               <i className="fa-regular fa-circle-user"></i>
               {repo.owner.username}/{repo.title}
             </div>

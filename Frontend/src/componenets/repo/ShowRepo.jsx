@@ -6,13 +6,15 @@ import Navbar from '../../Navbar.jsx'
 
 export default function ShowRepo(){
   const { repoId } = useParams(); 
-  const [ repo, setRepo ] = useState([]);
+  const [ repo, setRepo ] = useState(null);
+  const [folders, setFolders] = useState([]);
 
   useEffect(() => {
     const fetchRepoData = async() => {
       try{
         const result = await api.get(`/repo/${repoId}`);
-        setRepo(result.data);
+        setRepo(result.data.repo);
+        setFolders(result.data.fileTree);
       }
       catch(err){
         console.error("Error fetching repository!",err);
@@ -22,6 +24,10 @@ export default function ShowRepo(){
 
     fetchRepoData();
   }, []);
+
+  if (!repo) {
+    return <div></div>;
+  }
 
   return (
       <div className="show-page-wrapper">
@@ -51,7 +57,7 @@ export default function ShowRepo(){
               <div className="show-repo-folder-info">
                 <div className="show-folder">
                   <i class="fa-solid fa-folder"></i>
-                  <span>Backend</span>
+                  <span>{folders[0].name}</span>
                 </div>
                 <div className="show-folder">
                   <i class="fa-solid fa-folder"></i>

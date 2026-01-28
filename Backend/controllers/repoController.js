@@ -1,7 +1,7 @@
-import User from '../models/user.js';
-import Repository from '../models/repository.js';
-import Issue from '../models/issue.js';
+import Repository from '../models/repository.js'; 
 import mongoose from 'mongoose';
+import { s3, S3_BUCKET} from '../config/aws-config.js';
+import { buildFileTree } from '../utils/buildFileTree.js';
 
 const createRepository = async (req,res) => {
   const { title, description, content, owner, issues, visibility } = req.body;
@@ -60,8 +60,20 @@ const fetchRepositoryByID = async (req,res) => {
       res.status(404).json({ error: 'Repository not found!'});
     }
 
-    console.log(repo)
-    res.json(repo);
+    const prefix = `repositories/${repo.owner._id}/${repo.title}/commits/${repo.latestCommitId}/`;
+
+    const data = await s3.listObjectsV2({
+      Bucket: S3_BUCKET,
+      Prefix: prefix  
+    }).promise();
+    
+    const files = data.Contents.map(obj => {
+      return obj.Key.replace(prefix, "");
+    })
+
+    const fileTree = buildFileTree(files);
+
+    res.json({repo: repo, fileTree: fileTree});
   }
   catch(err){
     console.error("Error fetching repository: ", err);
@@ -171,6 +183,32 @@ const toggleVisibilityByID = async (req,res) => {
   }
 }
 
+const updateRepoAfterPush = async(req,res) =>{
+  const { userId, repoName, commitId } = req.body;
+  try{
+    console.log(userId, repoName);
+    const repo = await Repository.findOne({
+      owner: userId,
+      title: repoName
+    });
+
+    console.log(repo);
+    if (!repo) {
+      console.error(`Repo not found! looking for title: "${repoName}" with owner: "${userId}"`);
+      return res.status(404).json({ error: "Repository not found" });
+    } 
+    repo.latestCommitId = commitId;
+
+    await repo.save();
+
+    res.status(200).json({ message: "Repository updated successfully" });
+  }
+  catch(err){
+    console.error("Error updating repository: ", err);
+    res.status(500).json({ message: "Server Error" });
+  }
+} 
+
 const repoController = { 
   createRepository,
   getAllRepository,
@@ -180,6 +218,7 @@ const repoController = {
   updateRepositoryByID,
   deleteRepositoryByID,
   toggleVisibilityByID,
+  updateRepoAfterPush,
 }
 
 export default repoController;

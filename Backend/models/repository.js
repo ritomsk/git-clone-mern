@@ -8,11 +8,6 @@ const repositorySchema = new mongoose.Schema({
   description: {
     type: String,
   },
-  content: [
-    {
-      type: String,
-    }
-  ],
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -26,6 +21,10 @@ const repositorySchema = new mongoose.Schema({
   ],
   visibility: {
     type: Boolean,
+  },
+  latestCommitId: {
+    type: String, 
+    default: null
   }
 });
 
