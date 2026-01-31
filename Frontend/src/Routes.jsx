@@ -8,6 +8,7 @@ import  Signup  from './componenets/auth/Signup.jsx';
 import  Profile  from './componenets/user/Profile.jsx';
 import CreateRepo from "./componenets/repo/CreateRepo.jsx";
 import ShowRepo from './componenets/repo/ShowRepo.jsx';
+import NewRepoSetup from './componenets/repo/NewRepoSetup.jsx';
 
 export default function ProjectRoutes(){
   const { currUser, setCurrUser } = useAuth();
@@ -54,6 +55,10 @@ export default function ProjectRoutes(){
       path: '/repo/:repoId',
       element: <ShowRepo/>
     },
+    {
+      path: '/:userId/:title',
+      element: <NewRepoSetup/>
+    }
   ]);
 
   return element;

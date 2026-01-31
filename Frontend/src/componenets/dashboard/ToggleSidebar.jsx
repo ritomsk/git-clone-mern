@@ -14,7 +14,7 @@ export default function ToggleSidebar({setIsSidebar, isSidebar}){
   }
   return (
     <div>
-      <div className={`toggle-sidebar-wrapper ${isSidebar ? 'open' : ''}`}>
+      <div className={`toggle-sidebar-wrapper ${isSidebar ? 'open' : ''}`} onClick={(e) => e.stopPropagation()} >
         <div className="top-bar">
           <img 
                 src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDfC1lHYN3oYb9YGTDCqnPeOaaw2Pqlr96CA&s" 

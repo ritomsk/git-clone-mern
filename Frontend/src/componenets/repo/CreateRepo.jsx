@@ -28,7 +28,7 @@ export default function CreateRepo(){
       );
 
       setIsLoading(false);
-      navigate('/');
+      navigate(`/${userId}/${title}`);
     }
     catch(err){
       console.error("Error creating repository: ", err);
