@@ -73,6 +73,7 @@ const fetchRepositoryByID = async (req,res) => {
 
     const fileTree = buildFileTree(files);
 
+    console.log(fileTree);
     res.json({repo: repo, fileTree: fileTree});
   }
   catch(err){

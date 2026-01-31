@@ -1,8 +1,7 @@
-import { useEffect } from 'react';
 import './Navbar.css';
 import { useNavigate } from 'react-router-dom';
 
-export default function Navbar({searchQuery, setSearchQuery}){
+export default function Navbar({searchQuery, setSearchQuery, setIsSidebar}){
   const navigate = useNavigate();
 
   const handleSearch = (e) => {
@@ -12,7 +11,14 @@ export default function Navbar({searchQuery, setSearchQuery}){
   return (
     <div className="navbar">
       <div className="navbar-left">
-        <div className="toggle-sidebar">
+        <div
+          className="toggle-sidebar"
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsSidebar(true)
+            }
+          }
+          >
          <i className="fa-solid fa-bars"></i>
         </div>
         <div className="logo-container">

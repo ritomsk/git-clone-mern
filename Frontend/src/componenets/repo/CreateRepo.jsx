@@ -3,12 +3,14 @@ import Navbar from '../../Navbar.jsx';
 import './CreateRepo.css';
 import api from '../../utils/axiosInstance.js';
 import { useNavigate } from 'react-router-dom';
+import ToggleSidebar from '../dashboard/ToggleSidebar.jsx';
 
 export default function CreateRepo(){
   const [title, setTitle] = useState("");
   const [desc,setDesc] = useState("");
   const [visibility, setVisibility] = useState("true");
   const [isLoading, setIsLoading] = useState(false);
+  const [isSidebar, setIsSidebar] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async () => {
@@ -36,8 +38,9 @@ export default function CreateRepo(){
   }
 
   return (
-    <div className="repo-wrapper">
-      <Navbar></Navbar>
+    <div className="repo-wrapper" onClick={() => setIsSidebar(false)}>
+      <ToggleSidebar setIsSidebar={setIsSidebar} isSidebar={isSidebar} />
+      <Navbar setIsSidebar={setIsSidebar}></Navbar>
       <div className="repo-create-container">
         <div className="repo-header">
           <h3>Create a new repository</h3>

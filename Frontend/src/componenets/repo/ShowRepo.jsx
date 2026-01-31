@@ -3,18 +3,21 @@ import api from '../../utils/axiosInstance.js';
 import { useEffect, useState } from 'react';
 import './ShowRepo.css';
 import Navbar from '../../Navbar.jsx'
+import RepoTableView from './RepoTableView.jsx';
+import ToggleSidebar from '../dashboard/ToggleSidebar.jsx';
 
 export default function ShowRepo(){
   const { repoId } = useParams(); 
   const [ repo, setRepo ] = useState(null);
-  const [folders, setFolders] = useState([]);
+  const [fileTree,  setFileTree] = useState([]);
+  const [isSidebar, setIsSidebar] = useState(false);
 
   useEffect(() => {
     const fetchRepoData = async() => {
       try{
         const result = await api.get(`/repo/${repoId}`);
         setRepo(result.data.repo);
-        setFolders(result.data.fileTree);
+        setFileTree(result.data.fileTree);
       }
       catch(err){
         console.error("Error fetching repository!",err);
@@ -30,8 +33,9 @@ export default function ShowRepo(){
   }
 
   return (
-      <div className="show-page-wrapper">
-        <Navbar></Navbar>
+      <div className="show-page-wrapper" onClick={() => setIsSidebar(false)}>
+        <ToggleSidebar setIsSidebar={setIsSidebar} isSidebar={isSidebar} />
+        <Navbar setIsSidebar={setIsSidebar}></Navbar>
         <div className="navbar-show">
           <div className="navbar-show-elements">
             <i className="fa-solid fa-code"></i>
@@ -56,12 +60,10 @@ export default function ShowRepo(){
               </div>
               <div className="show-repo-folder-info">
                 <div className="show-folder">
-                  <i class="fa-solid fa-folder"></i>
-                  <span>{folders[0].name}</span>
-                </div>
-                <div className="show-folder">
-                  <i class="fa-solid fa-folder"></i>
-                  <span>Frontend</span>
+                  <RepoTableView 
+                    fileTree={fileTree} 
+                    onFileSelect={(path) => console.log("Fetch content for:", path)} 
+                  />
                 </div>
               </div>
             </div>

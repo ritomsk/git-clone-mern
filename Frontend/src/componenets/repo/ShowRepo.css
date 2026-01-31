@@ -104,16 +104,11 @@
   gap: 10px;
   padding: 10px 16px;
   border-bottom: 1px solid #21262d;
-  cursor: pointer;
   transition: background-color 0.1s;
 }
 
 .show-folder:last-child {
   border-bottom: none;
-}
-
-.show-folder:hover {
-  background-color: #161b22;
 }
 
 .show-folder i {

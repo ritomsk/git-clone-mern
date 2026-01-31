@@ -24,7 +24,7 @@ async function pushRepo(){
     for(const commitDir of commitsDir){
       const commitPath = path.join(commitsPath, commitDir);
 
-      await sendToS3(commitPath, userId, repoName, commitDir,commitPath);
+      await sendToS3(commitPath, userId, repoName, commitId,commitPath);
     }
     
     console.log("All commits pushed to S3");

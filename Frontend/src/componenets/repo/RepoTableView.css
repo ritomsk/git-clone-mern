@@ -1,0 +1,42 @@
+.folder-view-wrapper{
+  width: 100%;
+}
+
+.folders-container{
+  margin-top: 0.5rem;
+  width: 100%;
+}
+
+.file-folder{
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  column-gap: 0.4rem;
+  border-bottom: 1px solid #30363d;
+  padding: 6px 10px;
+  border-radius: 6px ;
+}
+
+.file-folder:hover {
+  background-color: #161b22;
+}
+
+.file-folder span{
+  font-size: 0.9rem;
+}
+
+.root-folder{
+  padding: 6px 6px;
+  display: flex;
+  column-gap: 0.5rem;
+}
+
+.btn-go-back{
+  background-color: #0d1017;
+  color: #c9d1d9;;
+  border: none;
+}
+
+.btn-go-back:hover{
+  cursor: pointer;
+}
