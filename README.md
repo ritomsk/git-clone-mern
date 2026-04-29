@@ -13,22 +13,22 @@ The project is divided into three main components:
 
 ```mermaid
 graph TD
-    subgraph Frontend [Frontend (React + Vite)]
-        UI[Web Interface]
-        Dashboard[Dashboard & Repo View]
-        AuthUI[Login/Signup]
+    subgraph Frontend ["Frontend (React + Vite)"]
+        UI["Web Interface"]
+        Dashboard["Dashboard & Repo View"]
+        AuthUI["Login/Signup"]
     end
 
-    subgraph Backend [Backend (Node.js + Express)]
-        API[RESTful API]
-        CLI[Git-like CLI Engine]
-        Sockets[Socket.io]
+    subgraph Backend ["Backend (Node.js + Express)"]
+        API["RESTful API"]
+        CLI["Git-like CLI Engine"]
+        Sockets["Socket.io"]
     end
 
-    subgraph Storage & Database
-        Mongo[(MongoDB)]
-        S3[(AWS S3 Bucket)]
-        LocalFS[Local File System .gitClone]
+    subgraph Storage ["Storage & Database"]
+        Mongo[("MongoDB")]
+        S3[("AWS S3 Bucket")]
+        LocalFS["Local File System .gitClone"]
     end
 
     UI -->|HTTP Requests| API
